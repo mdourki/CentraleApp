@@ -1,0 +1,38 @@
+{%extends 'base.html' %}
+{%block title%}Styles{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<div class="container">
+<a href="{% url 'newStyle' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter un style</a>
+<div class="row">
+<div class="col-12">
+  <a href="{% url 'exportStyles' %}" class="btn btn-success">Export to xls</a>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code du style</th>
+      <th scope="col">Nom du style</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for style in styles %}
+    <tr class="table-active">
+      <td>{{style.id}}</td>
+      <td>{{style.nom}}</td>
+      <td>
+        <a href="{% url 'styleUpdate' style.id%}">{% bs_icon 'pencil-fill' size='1.5em' %}</a>
+        <a href="{% url 'styleDelete' style.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

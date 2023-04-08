@@ -1,0 +1,32 @@
+{%extends 'base.html' %}
+{%block title%}Livraisons{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<div class="container">
+
+<div class="row">
+<div class="col-12">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code du livraison</th>
+      <th scope="col">Réference du livraison</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for livraison in livraisons %}
+    <tr class="table-active">
+      <td>{{livraison.id}}</td>
+      <td><a href="{% url 'livrDetails' livraison.id%}">{{livraison.ref_Livr}}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

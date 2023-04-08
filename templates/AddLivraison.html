@@ -1,0 +1,51 @@
+{%extends 'base.html' %}
+{%block title%}Livraison{%endblock%}
+{% load crispy_forms_tags %}
+
+{%block content%}
+
+<head>
+    <script>
+        function ddlselect(){
+            var d=document.getElementById("listDEPOT").value;
+            document.getElementById("txtDepot").value=d;
+        }
+    </script>
+</head>    
+
+<div class="container">
+    
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{form|crispy}}
+
+{%if prdt%}
+<label for="exampleSelect1" class="form-label mt-4">Quantité*</label>
+<input type="number" class="form-control" name="qte" max="{{qte_max}}" min="1"> 
+{%else%}
+<div class="form-group">
+    <label for="exampleSelect1" class="form-label mt-4">Dépot*</label>
+    <select class="form-select list" id="listDEPOT" name="selectPrdt" required onclick="ddlselect()">
+        {%for depot in listDepots%}
+        <option class="choosePrdt" value="{{depot}}">{{depot}}</option>
+        {%endfor%}    
+    </select>
+    <input type="text" id="txtDepot" name="depotTxt">
+</div>
+{%endif%}
+
+
+<!--
+<label for="exampleSelect1" class="form-label mt-4">Quantité*</label>
+<input type="number" class="form-control" name="qte"> 
+-->
+
+
+{{form2|crispy}}
+{{form3|crispy}}
+<input type="submit" class="btn btn-primary" value="Enregistrer" style="margin-top: 20px;">
+</form>
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,69 @@
+{%extends 'base.html' %}
+{%block title%}Fournisseurs{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+<head>
+  <style>
+    #divToScroll{
+      height: 500px;
+    }
+  </style>
+</head>
+
+<div class="container">
+<a href="{% url 'newFournisseur' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter un fournisseur</a>
+<br>
+<a href="{% url 'exportFournisseurs' %}" class="btn btn-success">Export to xls</a>
+<div class="row" >
+<div class="col-12" id="divToScroll" style="overflow:auto;">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Raison sociale</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Pays</th>
+      <th scope="col">N° tel</th>
+      <th scope="col">FAX</th>
+      <th scope="col">Email</th>  
+      <th scope="col">Catégorie</th>
+      <th scope="col">Page d'accueil</th>  
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for fournisseur in fournisseurs %}
+    <tr class="table-active">
+      <td>{{fournisseur.id}}</td>
+      <td>{{fournisseur.Raison_sociale}}</td>
+      <td>{{fournisseur.Adresse}}</td>
+      <td>{{fournisseur.Ville}}</td>
+      <td>{{fournisseur.Pays}}</td>
+      <td>{{fournisseur.Tel}}</td>
+      <td>{{fournisseur.Fax}}</td>
+      <td>{{fournisseur.Email}}</td>
+      <td>{{fournisseur.categorie}}</td>
+      <td>
+        {% if fournisseur.page_accueil %}
+        <a href="{{fournisseur.page_accueil}}">Page d'accueil</a>
+        {% else %}
+        
+        {% endif %}
+        
+      </td>
+      <td>
+        <a href="{% url 'fournisseurUpdate' fournisseur.id%}">{% bs_icon 'pencil-fill' size='1.5em' %}</a>
+        <a href="{% url 'fournisseurDelete' fournisseur.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+      </td>  
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

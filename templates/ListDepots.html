@@ -1,0 +1,41 @@
+{%extends 'base.html' %}
+{%block title%}Dépots{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<div class="container">
+<a href="{% url 'newDepot' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter un dépot</a>
+<a href="{% url 'associationMgasinDepot' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Lier un dépot avec un magasin</a>
+<div class="row">
+<div class="col-12">
+  <a href="{% url 'exportDepots' %}" class="btn btn-success">Export to xls</a>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Libelle</th>
+      <th scope="col">Quantité en stock</th>
+      <th scope="col">Action</th>
+  </thead>
+  <tbody>
+  {% for depot in depots %}
+    <tr class="table-active">
+      <td>{{depot.id}}</td>
+      <td>{{depot.Libelle}}</td>
+      <td>{{depot.qte}}</td>
+      <td>
+        <a href="{% url 'depotUpdate' depot.id%}">{% bs_icon 'pencil-fill' size='1.5em' %}</a>
+        <a href="{% url 'depotDelete' depot.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,77 @@
+{%extends 'base.html' %}
+{%block title%}Produit{%endblock%}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.chkClr').click(function(){
+                var text="";
+                $('.chkClr:checked').each(function(){
+                    text+=$(this).val()+' '
+                });
+                $('#txtClr').val(text);
+            });
+
+            $('.chkTaille').click(function(){
+                var text="";
+                $('.chkTaille:checked').each(function(){
+                    text+=$(this).val()+' '
+                });
+                $('#txtTaille').val(text);
+            });
+        });
+    </script>
+</head>
+<div class="container">
+    <form method="post" enctype="multipart/form-data" style="margin-bottom: 10px;">
+	    {% csrf_token %}
+	    <div class="form-group" style="margin-bottom: 5px;">
+            <label for="formFile" class="form-label mt-4">Importer un fichier xlsx pour ajouter un nouveau produit</label>
+            <input class="form-control" type="file" id="formFile" name="myfile" required>
+        </div>
+	    <button type="submit" class="btn btn-success">Upload</button>
+	</form>
+<form method="POST" class="produitForm" enctype="multipart/form-data">
+    <div class="prdtFormDiv">
+        {% csrf_token %}
+        {{form|crispy}}
+        <fieldset class="form-group">
+            <legend class="mt-4">Couleurs</legend>
+            <div class="clrsGrid">
+            {% for couleur in couleurs %}
+            <div class="form-check">
+                <input class="form-check-input chkClr" type="checkbox" value="{{couleur.id}}" id="flexCheckDefault" name="{{couleur.nom}}">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{couleur.nom}}
+                </label>
+            </div>
+            {% endfor%}
+            </div>
+        </fieldset>
+        <input type="hidden" id="txtClr" name="colorsTxt">
+        <fieldset class="form-group">
+            <legend class="mt-4">Tailles</legend>
+            <div class="taillesGrid">
+            {% for taille in tailles %}
+            <div class="form-check">
+                <input class="form-check-input chkTaille" type="checkbox" value="{{taille.id}}" id="flexCheckDefault" name="tailleBox">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{taille.code_Taille}}
+                </label>
+            </div>
+            {% endfor%}
+            </div>
+        </fieldset>
+        <input type="hidden" id="txtTaille" name="taillesTxt">
+        <input type="submit" class="btn btn-primary" value="Enregistrer">
+    </div>
+    
+    
+</form>
+</div>
+
+
+{%endblock%}

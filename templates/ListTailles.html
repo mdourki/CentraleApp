@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Tailles{% endblock %}
+{% block content %}
+{% load bootstrap_icons %}
+
+
+<div class="container" style="overflow-x:auto;">
+    <a href="{%url 'tailleNew'%}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter une Taille</a>
+    <div class="row">
+    <div class="col-12">
+      <a href="{%url 'exportTailles'%}" class="btn btn-success">Export to xls</a>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Code</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Action</th>
+      </thead>
+      <tbody>
+      {% for taille in tailles %}
+        <tr class="table-active">
+            <td>{{taille.code_Taille}}</td>
+            <td>{{taille.nom}}</td>
+            <td>
+                <a href="{% url 'tailleUpdate' taille.id%}">{% bs_icon 'pencil-fill' size='1.5em' %}</a>
+                <a href="{% url 'tailleDelete' taille.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+            </td>
+        </tr>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}
+

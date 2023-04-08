@@ -1,0 +1,27 @@
+{% extends "base_login.html" %}
+{% block title %}Connexion{% endblock %}
+{%load crispy_forms_tags%}
+{% block content %}
+<section class="section-conten padding-y" style="min-height:84vh">
+   <!-- ============================ COMPONENT LOGIN   ================================= -->
+      <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+         <div class="card-body">
+         <h4 class="card-title mb-4">Se connecter</h4>
+         <form action="{% url 'login' %}" method="post">
+            <div class="form-group">
+            {{ form|crispy }}
+         </div>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <p><input type="submit" class="btn btn-primary" value="Connexion" style="margin-top: 10px;"></p>
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+         </form>
+         </div> <!-- card-body.// -->
+       </div> <!-- card .// -->
+       <center><a href="{% url 'signup' %}">Créer un compte</a></center>
+       
+
+   </section>
+{% endblock %}

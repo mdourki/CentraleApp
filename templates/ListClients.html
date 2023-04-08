@@ -1,0 +1,51 @@
+{%extends 'base.html' %}
+{%block title%}Clients{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<div class="container">
+<a href="{% url 'newClient' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter un client</a>
+<br>
+<a href="{% url 'exportClients' %}" class="btn btn-success">Export to xls</a>
+<div class="row">
+<div class="col-12" style="overflow-x:auto;">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Pays</th>
+      <th scope="col">N° tel</th>
+      <th scope="col">FAX</th>
+      <th scope="col">Email</th>  
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for client in clients %}
+    <tr class="table-active">
+      <td>{{client.id}}</td>
+      <td>{{client.nom}}</td>
+      <td>{{client.Adresse}}</td>
+      <td>{{client.Ville}}</td>
+      <td>{{client.Pays}}</td>
+      <td>{{client.Tel}}</td>
+      <td>{{client.Fax}}</td>
+      <td>{{client.Email}}</td>
+      <td>
+        <a href="{% url 'clientUpdate' client.id%}">{% bs_icon 'pencil-fill' size='1.5em' %}</a>
+        <a href="{% url 'clientDelete' client.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+      </td>  
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

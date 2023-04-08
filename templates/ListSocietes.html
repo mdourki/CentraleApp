@@ -1,0 +1,60 @@
+{%extends 'base.html' %}
+{%block title%}Sociétés{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<head>
+  <style>
+    #divToScroll{
+      height: 500px;
+    }
+  </style>
+</head>
+<div class="container">
+<a href="{% url 'newSociete' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter une société</a>
+<br>
+<a href="{% url 'exportSocietes' %}" class="btn btn-success">Export to xls</a>
+<div class="row">
+<div class="col-12" id="divToScroll" style="overflow:auto;">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Raison sociale</th>
+      <th scope="col">ICE</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Pays</th>
+      <th scope="col">N° tel</th>
+      <th scope="col">FAX</th>
+      <th scope="col">Email</th>  
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for societe in societes %}
+    <tr class="table-active">
+      <td>{{societe.id}}</td>
+      <td>{{societe.Raison_sociale}}</td>
+      <td>{{societe.Ice}}</td>
+      <td>{{societe.Adresse}}</td>
+      <td>{{societe.Ville}}</td>
+      <td>{{societe.Pays}}</td>
+      <td>{{societe.Tel}}</td>
+      <td>{{societe.Fax}}</td>
+      <td>{{societe.Email}}</td>
+      <td>
+        <a href="{% url 'societeUpdate' societe.id%}">{% bs_icon 'pencil-fill' size='1.5em' %}</a>
+        <a href="{% url 'societeDelete' societe.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+      </td>  
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

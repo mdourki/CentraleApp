@@ -1,0 +1,38 @@
+{%extends 'base.html' %}
+{%block title%}TVA{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<div class="container">
+<a href="{% url 'newTVA' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter une TVA</a>
+<div class="row">
+<div class="col-12">
+  <a href="{% url 'exportTVA' %}" class="btn btn-success">Export to xls</a>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Taux</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for tva in tvas %}
+    <tr class="table-active">
+      <td>{{tva.id}}</td>
+      <td>{{tva.Taux}}%</td>
+      <td>
+        <a href="{% url 'tvaUpdate' tva.id%}">{% bs_icon 'pencil-fill' size='1.5em' %}</a>
+        <a href="{% url 'tvaDelete' tva.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+      </td>  
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,93 @@
+{%extends 'base.html' %}
+{%block title%}Produits{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+<head>
+  <style>
+    #divToScroll{
+      height: 500px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  {% include 'messages.html' %}
+<a href="{%url 'newProduit'%}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Ajouter un Produit</a>
+<br>
+<a href="{%url 'exportProduits'%}" class="btn btn-success">Export to xls</a>
+<div class="row">
+<div class="col-12" id="divToScroll" style="overflow:auto;">
+<table class="table table-hover">
+  
+  <thead>
+    <tr>
+      <th scope="col">Code</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Collection</th>
+      <th scope="col">Famille</th>
+      <th scope="col">Style</th>
+      <th scope="col">Couleur</th>
+      <th scope="col">Taille</th>
+      <th scope="col">TVA</th>
+      <th scope="col">Code Barre</th>
+      <th scope="col">Designation</th>  
+      <th scope="col">Libelle Ticket</th>
+      <th scope="col">Fournisseur</th>  
+      <th scope="col">Dépot</th>
+      <th scope="col">Prix Untaire</th>  
+      <th scope="col">Prix HT</th> 
+      <th scope="col">Prix TTC</th> 
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  
+    <tbody>
+      <div>
+      {% for produit,couleur,taille,qteDepot,qteFour in zipped_data %} 
+        <tr class="table-active">
+          <td>{{produit.Code_Produit}}</td>
+          <td>{{produit.Nom}}</td>
+          <td>{{produit.Collection}}</td>
+          <td>{{produit.Famille}}</td>
+          <td>{{produit.Style}}</td>
+          <td>{{couleur}}</td>
+          <td>{{taille}}</td>
+          <td>{{produit.Tva}}</td>
+          <td>{{produit.Code_Barre}}</td>
+          <td>{{produit.Designation}}</td>
+          <td>{{produit.Libelle_Ticket}}</td>
+          <td>{{qteFour}}</td>
+          <td>{{qteDepot}}</td>
+          <td>{{produit.Prix_Untaire|floatformat:2}}</td>
+          <td>{{produit.Prix_HT|floatformat:2}}</td>
+          <td>{{produit.Prix_TTC|floatformat:2}}</td>
+          <td>
+            <a href="{% url 'produitDelete' produit.id%}">{% bs_icon 'trash-fill' size='1.5em' %}</a>
+            <a href="{% url 'livraisonType' produit.id%}">{% bs_icon 'arrow-left-right' size='1.5em' %}</a>
+          </td>  
+        </tr>
+      {% endfor %}
+    </div>
+      </tbody>
+  
+  
+  
+ 
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}
+
+{% block javascripts %}
+<script>
+  setTimeout(function(){
+      if ($('#msg').length > 0) {
+        $('#msg').remove();
+      }
+    }, 4000)
+</script>
+{%endblock%}

@@ -1,0 +1,91 @@
+nav .navbar-collapse .navbar-nav .dropdown .menu-dropdown{
+    margin-right: -70px;
+    height: 0px;
+}
+
+nav .navbar-collapse .navbar-nav .dropdown .menu-dropdown .dropdown-item{
+    background-color: white;
+    display: none;
+}
+
+nav .navbar-collapse .navbar-nav .dropdown:hover .menu-dropdown .dropdown-item{
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+nav .navbar-collapse .navbar-nav .dropdown:hover .dropdown-item:hover{
+    background-color: #191919;
+    color: white;
+}
+
+.societeForm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+
+.societeForm .form-control{
+    width: 90%;
+}
+
+.societeForm .btn-primary{
+    width: 50%;
+    margin-top: 20px;
+}
+
+.clientForm .clientFormDiv{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+.clientForm .clientFormDiv .form-control{
+    width: 90%;
+}
+
+.clientForm .btn-primary{
+    width: 25%;
+    margin-top: 20px;
+}
+
+.fournisseurForm{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 20px;
+}
+.fournisseurForm .form-control{
+    width: 90%;
+}
+
+.fournisseurForm .btn-primary{
+    width: 50%;
+    margin-top: 20px;
+}
+
+.produitForm .prdtFormDiv{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 20px;
+}
+
+.produitForm .prdtFormDiv .clrsGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 20px;
+}
+
+.produitForm .prdtFormDiv .taillesGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 20px;
+}
+
+.produitForm .prdtFormDiv .form-control{
+    width: 90%;
+}
+
+.produitForm .btn-primary{
+    width: 50%;
+    height: 50%;
+    margin-top: 60px;
+}

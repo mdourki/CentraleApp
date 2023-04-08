@@ -1,0 +1,32 @@
+{%extends 'base.html' %}
+{%block title%}Receptions{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<div class="container">
+<a href="{% url 'newReception' %}" class="btn btn-outline-secondary" style="margin-top: 10px; margin-bottom: 10px;">Faire une réception</a>
+<div class="row">
+<div class="col-12">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Code du réception</th>
+      <th scope="col">Réference du réception</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for reception in receptions %}
+    <tr class="table-active">
+      <td>{{reception.id}}</td>
+      <td><a href="{% url 'recepDetails' reception.id%}">{{reception.ref_recep}}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+{%endblock%}

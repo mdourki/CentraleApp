@@ -1,0 +1,15 @@
+{%extends 'base.html' %}
+{%block title%}Type de livraison{%endblock%}
+{%block content%}
+{% load bootstrap_icons %}
+
+<div class="container">
+
+    <a href="{%url 'CltLiv' prdt_id%}" class="btn btn-link">Livraison vers client</a>
+    <br>
+    <a href="{%url 'MagLiv' prdt_id%}" class="btn btn-link">Livraison vers magasin</a>
+
+</div>
+
+
+{%endblock%}

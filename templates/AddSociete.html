@@ -1,0 +1,24 @@
+{%extends 'base.html' %}
+{%block title%}Société{%endblock%}
+{% load crispy_forms_tags %}
+
+{%block content%}
+    
+<div class="container">
+    <form method="post" enctype="multipart/form-data" style="margin-bottom: 10px;">
+	    {% csrf_token %}
+	    <div class="form-group" style="margin-bottom: 5px;">
+            <label for="formFile" class="form-label mt-4">Importer un fichier xlsx pour ajouter une nouvelle société</label>
+            <input class="form-control" type="file" id="formFile" name="myfile" required>
+        </div>
+	    <button type="submit" class="btn btn-success">Upload</button>
+	</form>
+<form method="POST" class="societeForm" enctype="multipart/form-data">
+{% csrf_token %}
+{{form|crispy}}
+<input type="submit" class="btn btn-primary" value="Enregistrer">
+</form>
+</div>
+
+
+{%endblock%}

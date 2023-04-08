@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title> {% block title%} {%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="shortcut icon" type="image/png" href="http://www.amalsoft.ma/wp-content/uploads/2021/08/cropped-logo.jpg">
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'js/jquery.min.js'%}"></script>
+    <script src="{%static 'js/popper.min.js'%}"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary topnav" id="myTopnav">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{%url 'home'%}">Centrale</a>
+          <button class="navbar-toggler" type="button" id="toggle" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          
+      
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="{%url 'home'%}">Accueil
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'societes'%}">Sociétés</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'fournisseurs'%}">Fournisseurs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'clients'%}">Clients</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'depots'%}">Depots</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Base</a>
+                <div class="menu-dropdown"><!--dropdown-menu -->
+                  <a class="dropdown-item" href="{%url 'magasins'%}">Magasins</a>
+                  <a class="dropdown-item" href="{%url 'familles'%}">Familles</a>
+                  <a class="dropdown-item" href="{%url 'styles'%}">Styles</a>
+                  <a class="dropdown-item" href="{%url 'tvas'%}">TVA</a>
+                  <a class="dropdown-item" href="{%url 'collections'%}">Collections</a>
+                  <a class="dropdown-item" href="{%url 'tailles'%}">Tailles</a>
+                  <a class="dropdown-item" href="{%url 'couleurs'%}">Couleurs</a>
+                  <a class="dropdown-item" href="{%url 'categories'%}">Catégories</a>
+                  <a class="dropdown-item" href="{%url 'receptions'%}">Réceptions</a>
+                  <a class="dropdown-item" href="{%url 'livraisons'%}">Livraisons</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'produits'%}">Produits</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link logout" href="{%url 'logout'%}">Se déconnecter</a>
+              </li>            
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    {% block content %}
+    {%endblock%}
+
+    
+    {% block javascripts %}
+    
+    {%endblock%}
+
+  
+</body>

@@ -1,0 +1,15 @@
+{%extends 'base.html' %}
+{%block title%}Suppression{%endblock%}
+{%block content%}
+
+<div class="main">
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        Voulez-vous supprimer cet élément ?
+        <input type="submit" value="Oui" />
+        <a href="{% url 'magasins' %}">Annuler </a>
+    </form>
+</div>
+
+{%endblock%}

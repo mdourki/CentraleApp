@@ -1,0 +1,31 @@
+{%extends 'base.html' %}
+{%block title%}Choix du client{%endblock%}
+{% load crispy_forms_tags %}
+
+{%block content%}
+
+<head>
+    <script>
+        
+    </script>
+</head>    
+
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="form-group">
+    <label for="exampleSelect1" class="form-label mt-4">Client*</label>
+    <select class="form-select list" id="listCLT" name="selectClt" required>
+        {%for clt in clts%}
+        <option class="chooseClt" value="{{clt}}">{{clt}}</option>
+        {%endfor%}    
+    </select>
+    
+</div>
+<input type="submit" class="btn btn-primary" value="Enregistrer" style="margin-top: 20px;">
+</form>
+</div>
+
+
+{%endblock%}
